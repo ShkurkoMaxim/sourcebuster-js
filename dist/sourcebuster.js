@@ -329,6 +329,8 @@ var data        = _dereq_('./data'),
     params      = _dereq_('./params'),
     migrations  = _dereq_('./migrations');
 
+var blacklist = ['partner', 'office', 'agent'];
+
 module.exports = function(prefs) {
 
   var p         = params.fetch(prefs);
@@ -589,7 +591,9 @@ module.exports = function(prefs) {
   }
 
   (function setData() {
-
+    if (get_param.ldg && blacklist.includes(get_param.ldg)) {
+      return;
+    }
     // Main data
     cookies.set(data.containers.current, mainData(), lifetime, domain, isolate);
     if (!cookies.get(data.containers.first)) {

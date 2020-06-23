@@ -8,6 +8,8 @@ var data        = require('./data'),
     params      = require('./params'),
     migrations  = require('./migrations');
 
+var blacklist = ['partner', 'office', 'agent'];
+
 module.exports = function(prefs) {
 
   var p         = params.fetch(prefs);
@@ -268,7 +270,9 @@ module.exports = function(prefs) {
   }
 
   (function setData() {
-
+    if (get_param.ldg && blacklist.includes(get_param.ldg)) {
+      return;
+    }
     // Main data
     cookies.set(data.containers.current, mainData(), lifetime, domain, isolate);
     if (!cookies.get(data.containers.first)) {
