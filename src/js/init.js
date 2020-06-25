@@ -304,7 +304,6 @@ module.exports = function(prefs) {
       pages_count = parseInt(cookies.parse(data.containers.session)[cookies.unsbjs(data.containers.session)][data.aliases.session.pages_seen]) || 1;
       pages_count += 1;
     }
-    console.log('data.containers.session', data.containers.session);
     cookies.set(data.containers.session, data.pack.session(pages_count), p.session_length, domain, isolate);
 
     // Promocode
