@@ -60,6 +60,9 @@ module.exports = {
   },
 
   destroy: function(name, domain, excl_subdomains) {
+    console.log('name', name);
+    console.log('domain', domain);
+    console.log('excl_subdomains', excl_subdomains);
     this.set(name, '', -1, domain, excl_subdomains);
   },
 
